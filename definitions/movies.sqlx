@@ -1,0 +1,22 @@
+config {
+    type: "table",
+    name: "movies",
+    columns: {
+    title: "title of the movie",
+    certificate: "certificate given to the movie",
+    genre: "genre of the movie",
+    rating: "movie rating",
+    director: "director of the movie",
+    cast_members: "cast of the movie"
+  }
+}
+
+SELECT 
+  Series_Title AS title, 
+  Certificate AS certificate, 
+  Genre AS genre, 
+  IMDB_Rating AS rating, 
+  Director AS director, 
+  ARRAY[Star1, Star2, Star3, Star4] AS cast_members
+FROM 
+  IMDb.imdb_movies
