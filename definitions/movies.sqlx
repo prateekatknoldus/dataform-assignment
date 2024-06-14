@@ -1,6 +1,7 @@
 config {
     type: "table",
     name: "movies",
+    description: "contains information about the movies",
     columns: {
     title: "title of the movie",
     certificate: "certificate given to the movie",
