@@ -4,7 +4,7 @@ config {
     description: "contains information about the movies",
     columns: {
     title: "title of the movie",
-    certificate: "certificate given to the movie",
+    certificate: "certificate provided to the movie",
     genre: "genre of the movie",
     rating: "movie rating",
     director: "director of the movie",
