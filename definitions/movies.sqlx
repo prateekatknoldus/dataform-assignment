@@ -3,21 +3,24 @@ config {
     name: "movies",
     description: "contains information about the movies",
     columns: {
-    title: "title of the movie",
-    certificate: "certificate provided to the movie",
-    genre: "genre of the movie",
-    rating: "movie rating",
-    director: "director of the movie",
-    cast_members: "cast of the movie"
-  }
+        title: "title of the movie",
+        certificate: "certificate provided to the movie",
+        genre: "genre of the movie",
+        rating: "movie rating",
+        director: "director of the movie",
+        cast_members: "cast of the movie"
+    }
 }
 
-SELECT 
-  Series_Title AS title, 
-  Certificate AS certificate, 
-  Genre AS genre, 
-  IMDB_Rating AS rating, 
-  Director AS director, 
-  ARRAY[Star1, Star2, Star3, Star4] AS cast_members
-FROM 
+SELECT
+  Series_Title AS title,
+  Certificate AS certificate,
+  Genre AS genre,
+  IMDB_Rating AS rating,
+  Director AS director,
+  ARRAY[Star1,
+  Star2,
+  Star3,
+  Star4] AS cast_members
+FROM
   IMDb.imdb_movies
