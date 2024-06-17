@@ -1,0 +1,21 @@
+config {
+    type: "view",
+    name: "top_directors",
+    description: "contains most prolific directors in terms of the number of movies they have directed",
+    columns: {
+        director: "director of the movie",
+        movie_count: "count of directed movies"
+    }
+}
+
+SELECT 
+  director,
+  COUNT(*) AS movie_count
+FROM 
+    ${ref("enriched_movies")}
+GROUP BY 
+  director
+ORDER BY 
+  movie_count DESC
+LIMIT 
+  10

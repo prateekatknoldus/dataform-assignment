@@ -1,0 +1,25 @@
+config {
+    type: "view",
+    name: "most_popular_genres",
+    description: "contains movie genres that are most popular among viewers",
+    columns: {
+        genre: "genre of the movie",
+        movie_count: "count of movies"
+    }
+}
+
+SELECT
+  genre,
+  COUNT(*) AS movie_count
+FROM (
+  SELECT
+    title,
+    SPLIT(REPLACE(genre, ' ', ''), ',') AS genre
+  FROM
+    ${ref("enriched_movies")} )
+CROSS JOIN
+  UNNEST(genre) AS genre
+GROUP BY
+  genre
+ORDER BY
+  movie_count DESC

@@ -1,0 +1,38 @@
+config {
+    type: "table",
+    name: "unified_movies",
+    description: "contains unique movies with no duplicate entries",
+    columns: {
+        title: "title of the movie",
+        certificate: "certificate provided to the movie",
+        genre: "genre of the movie",
+        rating: "movie rating",
+        director: "director of the movie",
+        cast_members: "cast of the movie"
+    }
+}
+
+SELECT
+  title,
+  certificate,
+  genre,
+  rating,
+  director,
+  ARRAY_AGG(DISTINCT cast_member) AS cast_members
+FROM (
+  SELECT
+    DISTINCT title,
+    certificate,
+    genre,
+    rating,
+    director,
+    cast_member
+  FROM
+    ${ref("cleaned_movies")},
+    UNNEST(cast_members) AS cast_member )
+GROUP BY
+  title,
+  certificate,
+  genre,
+  rating,
+  director

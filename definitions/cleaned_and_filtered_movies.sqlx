@@ -1,0 +1,34 @@
+config {
+    type: "table",
+    name: "cleaned_movies",
+    description: "contains cleaned and filtered movies information",
+    columns: {
+        title: "title of the movie",
+        certificate: "certificate provided to the movie",
+        genre: "genre of the movie",
+        rating: "movie rating",
+        director: "director of the movie",
+        cast_members: "cast of the movie"
+    }
+}
+
+SELECT
+  title,
+  IFNULL(certificate, 'Not Rated') AS certificate,
+  genre,
+  rating,
+  director,
+  ARRAY(
+  SELECT
+    DISTINCT cast_member
+  FROM
+    UNNEST(cast_members) AS cast_member
+  WHERE
+    cast_member IS NOT NULL
+    AND cast_member != '' ) AS cast_members
+FROM
+   ${ref("movies")}
+WHERE
+  rating IS NOT NULL
+  AND rating >= 0
+  AND rating <= 10

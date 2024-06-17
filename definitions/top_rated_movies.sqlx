@@ -1,0 +1,19 @@
+config {
+    type: "view",
+    name: "top_rated_movies",
+    description: "contains top-rated movies of all time",
+    columns: {
+        title: "title of the movie",
+        rating: "movie rating"
+    }
+}
+
+SELECT
+  title,
+  rating
+FROM
+  ${ref("enriched_movies")}
+ORDER BY
+  rating DESC
+LIMIT
+  10
