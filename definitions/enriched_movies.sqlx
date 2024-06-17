@@ -26,7 +26,7 @@ SELECT
   m.Runtime AS runtime,
   m.Overview AS overview
 FROM
-  IMDb.unified_movies um
+  ${ref("unified_movies")} um
 INNER JOIN
   IMDb.imdb_movies m
 ON

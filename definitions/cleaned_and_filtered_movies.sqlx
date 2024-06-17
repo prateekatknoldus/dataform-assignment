@@ -27,7 +27,7 @@ SELECT
     cast_member IS NOT NULL
     AND cast_member != '' ) AS cast_members
 FROM
-  IMDb.movies
+   ${ref("movies")}
 WHERE
   rating IS NOT NULL
   AND rating >= 0

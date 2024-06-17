@@ -16,7 +16,7 @@ FROM (
     title,
     SPLIT(REPLACE(genre, ' ', ''), ',') AS genre
   FROM
-    IMDb.enriched_movies )
+    ${ref("enriched_movies")} )
 CROSS JOIN
   UNNEST(genre) AS genre
 GROUP BY

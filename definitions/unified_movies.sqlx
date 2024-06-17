@@ -28,7 +28,7 @@ FROM (
     director,
     cast_member
   FROM
-    IMDb.cleaned_movies,
+    ${ref("cleaned_movies")},
     UNNEST(cast_members) AS cast_member )
 GROUP BY
   title,

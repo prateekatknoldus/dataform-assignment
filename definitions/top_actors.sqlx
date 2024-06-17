@@ -12,7 +12,7 @@ SELECT
   actor,
   COUNT(*) AS movie_count
 FROM 
-  IMDb.enriched_movies,
+  ${ref("enriched_movies")},
   UNNEST(cast_members) AS actor
 GROUP BY 
   actor
