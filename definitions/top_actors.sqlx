@@ -1,0 +1,22 @@
+config {
+    type: "view",
+    name: "top_actors",
+    description: "contains most prolific actors in terms of the number of movies they have worked on",
+    columns: {
+        actor: "actor of the movie",
+        movie_count: "count of movies done by an actor"
+    }
+}
+
+SELECT 
+  actor,
+  COUNT(*) AS movie_count
+FROM 
+  IMDb.enriched_movies,
+  UNNEST(cast_members) AS actor
+GROUP BY 
+  actor
+ORDER BY 
+  movie_count DESC
+LIMIT 
+  10
