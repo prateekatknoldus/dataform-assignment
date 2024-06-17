@@ -1,0 +1,34 @@
+config {
+    type: "table",
+    name: "enriched_movies",
+    description: "movies table with additional information",
+    columns: {
+        title: "title of the movie",
+        certificate: "certificate provided to the movie",
+        genre: "genre of the movie",
+        rating: "movie rating",
+        director: "director of the movie",
+        cast_members: "cast of the movie",
+        released_year: "movie release year",
+        runtime: "total duration of the movie",
+        overview: "overview of the movie"
+    }
+}
+
+SELECT
+  um.title,
+  um.certificate,
+  um.genre,
+  um.rating,
+  um.director,
+  um.cast_members,
+  m.Released_Year AS released_year,
+  m.Runtime AS runtime,
+  m.Overview AS overview
+FROM
+  IMDb.unified_movies um
+INNER JOIN
+  IMDb.imdb_movies m
+ON
+  um.title = m.Series_Title
+  AND um.director = m.Director
